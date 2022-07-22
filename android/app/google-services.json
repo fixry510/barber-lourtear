@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "716834602599",
+    "project_id": "barberlt",
+    "storage_bucket": "barberlt.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:716834602599:android:bf2c184ddff79ab5405ec2",
+        "android_client_info": {
+          "package_name": "com.lourtea.barber"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "716834602599-lqb9fv4s2am7ate6cvumtgf03do67c9u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGBXHg6mS1fCrDUwyQaIL1pUgCOXx9Z7w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "716834602599-lqb9fv4s2am7ate6cvumtgf03do67c9u.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "716834602599-dtf525au09smooden233qeuue7uqks68.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.lourtea.barber"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
