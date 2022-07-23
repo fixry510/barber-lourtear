@@ -13,6 +13,10 @@ import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:image_picker/image_picker.dart';
 
 class RegisterController extends GetxController {
+// Test เท่านั้น
+  var isUserRegister = true.obs;
+//
+
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmController = TextEditingController();
@@ -30,7 +34,7 @@ class RegisterController extends GetxController {
   }
 
   Future<void> onRegister() async {
-    // perform otp validation
+    // verify OTP
     await loadRequest(() async {
       try {
         final fbAuth = FirebaseAuth.instance;
@@ -39,13 +43,15 @@ class RegisterController extends GetxController {
           password: passwordController.text.trim(),
         );
         await fromDataRequest(
-          path: "${APIEndpoint.hostName}/register-user",
+          path: isUserRegister.value
+              ? "${APIEndpoint.hostName}/register-user"
+              : "${APIEndpoint.hostName}/register-tech", //<-- อย่าลืมเอาออก
           data: dio.FormData.fromMap({
             "user_id": credential.user!.uid,
             "email": emailController.text.trim(),
             "fullName": fullNameController.text,
             "phoneNumber": phoneController.text,
-            "position": 1,
+            "position": isUserRegister.value ? 1 : 2, //<-- อย่าลืมเอาออก
             "image": await dio.MultipartFile.fromFile(
               file!.path,
               filename: 'profile-image.png',

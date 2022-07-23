@@ -113,6 +113,19 @@ class OTPScreen extends StatelessWidget {
                             textAlign: TextAlign.center,
                           ),
                           SizedBox(height: 40),
+                          // Test
+                          Obx(() => Switch(
+                                value: Get.find<RegisterController>()
+                                    .isUserRegister
+                                    .value,
+                                onChanged: (val) {
+                                  Get.find<RegisterController>()
+                                      .isUserRegister
+                                      .value = val;
+                                },
+                              )),
+                          // Test
+
                           Container(
                             width: Get.width * 0.5,
                             child: ElevatedButton(

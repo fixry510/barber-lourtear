@@ -4,7 +4,8 @@ import 'package:get/get.dart';
 
 class BackGroundMain extends StatelessWidget {
   final Widget child;
-  BackGroundMain({required this.child});
+  final double? height;
+  BackGroundMain({required this.child, this.height});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,7 @@ class BackGroundMain extends StatelessWidget {
             child: ClipPath(
               clipper: CurveClip(),
               child: Container(
-                height: (Get.height * 0.4) + 10,
+                height: height == null ? (Get.height * 0.4) + 10 : height! + 10,
                 width: double.infinity,
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
@@ -44,7 +45,7 @@ class BackGroundMain extends StatelessWidget {
             child: ClipPath(
               clipper: CurveClip(),
               child: Container(
-                height: (Get.height * 0.4),
+                height: height ?? (Get.height * 0.4),
                 width: double.infinity,
                 decoration: BoxDecoration(
                   gradient: LinearGradient(

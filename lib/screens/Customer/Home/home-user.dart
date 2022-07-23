@@ -1,9 +1,9 @@
-import 'dart:ui';
-
 import 'package:barber/models/user-data.dart';
+import 'package:barber/screens/Customer/Home/hair-items.dart';
 import 'package:barber/screens/Customer/Home/home-user-controller.dart';
 import 'package:barber/screens/auth-controller.dart';
 import 'package:barber/utils/backround-main.dart';
+import 'package:barber/utils/load-widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -81,25 +81,12 @@ class HomeUser extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 30),
-                  Expanded(
-                    child: GetBuilder<HomeUserController>(
-                      id: "scroll",
-                      builder: (controller) => PageView.builder(
-                        controller: controller.pageController,
-                        itemCount: controller.hairs.length,
-                        itemBuilder: (context, index) {
-                          return Align(
-                            alignment: Alignment(0, -0.8),
-                            child: Container(
-                              width: Get.width * 0.8,
-                              height: Get.width * 0.8,
-                              color: controller.hairs[index],
-                              // margin: EdgeInsets.only(bottom: 15),
-                            ),
-                          );
-                        },
-                      ),
-                    ),
+                  Obx(
+                    () => controller.isLoad.value
+                        ? LoadWidget()
+                        : Expanded(
+                            child: HairItems(),
+                          ),
                   ),
                 ],
               ),

@@ -1,36 +1,32 @@
+import 'package:barber/config/api-endpoint.dart';
+import 'package:barber/models/hair-data.dart';
+import 'package:barber/network/request-exception.dart';
+import 'package:barber/network/request.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 
 class HomeUserController extends GetxController {
-  PageController pageController = PageController(
-    viewportFraction: 0.9,
-  );
+  PageController pageController = PageController(viewportFraction: 0.9);
+  List<HairData> hairs = [];
 
-  double currentPage = 0.0;
+  final isLoad = true.obs;
+
+  Future<void> fetchHairs() async {
+    try {
+      final data = await getRequest(path: "${APIEndpoint.hostName}/hairs");
+      data.forEach((hairItem) {
+        hairs.add(HairData.fromJson(hairItem));
+      });
+    } on RequestException catch (_) {
+    } finally {
+      isLoad.value = false;
+    }
+  }
 
   @override
   void onInit() {
     super.onInit();
-    pageController.addListener(listernerPageView);
-  }
-
-  void listernerPageView() {
-    currentPage = pageController.page!;
-    update(["scroll"]);
-  }
-
-  List hairs = [
-    Colors.red,
-    Colors.green,
-    Colors.blue,
-    Colors.pink,
-    Colors.yellow,
-  ];
-
-  @override
-  void onClose() {
-    pageController.removeListener(listernerPageView);
-    super.onClose();
+    fetchHairs();
   }
 }
