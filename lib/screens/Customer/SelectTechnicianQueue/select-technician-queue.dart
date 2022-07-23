@@ -1,9 +1,8 @@
 import 'package:barber/screens/Customer/SelectTechnicianQueue/select-technician-queue-controller.dart';
 import 'package:barber/utils/backround-main.dart';
-import 'package:barber/utils/date-select.dart';
+import 'package:barber/utils/load-widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 
 class SelectTechnicianQueue extends StatelessWidget {
   const SelectTechnicianQueue({Key? key}) : super(key: key);
@@ -62,13 +61,10 @@ class SelectTechnicianQueue extends StatelessWidget {
                               ),
                               GestureDetector(
                                 onTap: () async {
-                                  final s = await showDateSelect(
-                                      firstDate: DateTime.now());
-                                  print(DateFormat("dd/MM/yyyy", "th")
-                                      .format(s!));
+                                  controller.selectDateQueue();
                                 },
                                 child: Text(
-                                  'วันที่ 12/02/2562',
+                                  'วันที่ ${controller.currentDate}',
                                   style: TextStyle(
                                     fontSize: 18,
                                   ),
@@ -81,7 +77,21 @@ class SelectTechnicianQueue extends StatelessWidget {
                     ),
                     SizedBox(height: 35),
                     Expanded(
-                      child: Container(),
+                      child: Container(
+                        child: Obx(() {
+                          return controller.isLoad.value
+                              ? LoadWidget()
+                              : ListView(
+                                  children: [
+                                    ...controller.technicTimeData.map((e) {
+                                      return Text(
+                                        "${e.fromTime} - ${e.toTime} ${e.isAvalible == 1 ? "ว่าง" : "ไมว่าง"}",
+                                      );
+                                    }).toList()
+                                  ],
+                                );
+                        }),
+                      ),
                     ),
                   ],
                 ),
