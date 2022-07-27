@@ -1,6 +1,7 @@
 import 'package:barber/screens/Customer/SelectTechnicianQueue/select-technician-queue-controller.dart';
+import 'package:barber/screens/Customer/SelectTechnicianQueue/technic-data-dateselect.dart';
+import 'package:barber/screens/Customer/SelectTechnicianQueue/time-items.dart';
 import 'package:barber/utils/backround-main.dart';
-import 'package:barber/utils/load-widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -49,50 +50,12 @@ class SelectTechnicianQueue extends StatelessWidget {
                         ),
                         SizedBox(width: 10),
                         Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'ช่าง ${controller.technic.fullName}',
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w700,
-                                ),
-                              ),
-                              GestureDetector(
-                                onTap: () async {
-                                  controller.selectDateQueue();
-                                },
-                                child: Text(
-                                  'วันที่ ${controller.currentDate}',
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
+                          child: TechnicDataDateSelect(),
                         ),
                       ],
                     ),
                     SizedBox(height: 35),
-                    Expanded(
-                      child: Container(
-                        child: Obx(() {
-                          return controller.isLoad.value
-                              ? LoadWidget()
-                              : ListView(
-                                  children: [
-                                    ...controller.technicTimeData.map((e) {
-                                      return Text(
-                                        "${e.fromTime} - ${e.toTime} ${e.isAvalible == 1 ? "ว่าง" : "ไมว่าง"}",
-                                      );
-                                    }).toList()
-                                  ],
-                                );
-                        }),
-                      ),
-                    ),
+                    Expanded(child: TimeItems()),
                   ],
                 ),
               );

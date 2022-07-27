@@ -1,4 +1,5 @@
 import 'package:barber/config/routes.dart';
+import 'package:barber/screens/Customer/HairDetail/hair-detail-controller.dart';
 import 'package:barber/screens/Customer/SelectTechnician/select-technician-controller.dart';
 import 'package:barber/screens/Customer/SelectTechnician/technic-item.dart';
 import 'package:barber/utils/backround-main.dart';
@@ -49,11 +50,23 @@ class SelectTechnician extends StatelessWidget {
                             children: [
                               ...controller.technicians.map((techic) {
                                 return GestureDetector(
-                                  onTap: () {
+                                  onTap: () async {
                                     Get.toNamed(
                                       Routes.selectTechnicianQueue,
                                       arguments: techic,
-                                    );
+                                    )?.then((value) {
+                                      if (value != null) {
+                                        Get.find<HairDetailController>()
+                                                .selectTechnicData['technic'] =
+                                            techic;
+                                        Get.find<HairDetailController>()
+                                                .selectTechnicData['time'] =
+                                            value['time'];
+                                        Get.find<HairDetailController>()
+                                                .selectTechnicData['date'] =
+                                            value['date'];
+                                      }
+                                    });
                                   },
                                   child: TechnicItem(techic: techic),
                                 );

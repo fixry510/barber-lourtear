@@ -15,6 +15,8 @@ class TechnicTimeData {
     required this.dateWork,
   });
 
+  get timeString => "${this.fromTime} น.  -  ${this.toTime} น.";
+
   TechnicTimeData.fromJson(Map<String, dynamic> json) {
     scheduleId = json['schedule_id'];
     fromTime = json['fromTime'];

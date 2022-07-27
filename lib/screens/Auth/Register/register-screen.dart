@@ -1,6 +1,6 @@
 import 'package:barber/config/routes.dart';
 import 'package:barber/models/user-data.dart';
-import 'package:barber/screens/Register/register-controller.dart';
+import 'package:barber/screens/Auth/Register/register-controller.dart';
 import 'package:barber/utils/background-curves.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

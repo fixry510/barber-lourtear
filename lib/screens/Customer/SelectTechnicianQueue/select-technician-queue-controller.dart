@@ -30,10 +30,11 @@ class SelectTechnicianQueueController extends GetxController {
       technicTimeData = [];
       String currentNewFormat = currentDate.split("/").reversed.join("-");
       final respone = await getRequest(
-          path: "${APIEndpoint.hostName}/technician/time/${technic.userId}",
-          queryParameters: {
-            "date": currentNewFormat,
-          });
+        path: "${APIEndpoint.hostName}/technician/time/${technic.userId}",
+        queryParameters: {
+          "date": currentNewFormat,
+        },
+      );
       respone.forEach((data) {
         final timeObj = TechnicTimeData.fromJson(data);
         timeObj.fromTime = timeObj.fromTime.substring(0, 5);

@@ -10,8 +10,8 @@ class HairDetailController extends GetxController {
   final emailController = TextEditingController();
   final phoneController = TextEditingController();
   final hairCutController = TextEditingController();
-  final techController = TextEditingController();
-  final dateTimeController = TextEditingController();
+
+  var selectTechnicData = {}.obs;
 
   @override
   void onInit() {

@@ -18,6 +18,7 @@ class AuthController extends GetxController {
     ever(isLogin, (bool val) async {
       if (val) {
         final userMap = await fetchUser();
+        print(userMap);
         if (userMap != null) {
           final userData = Get.put(UserData.fromJson(userMap), permanent: true);
           if (userData.position == "1") {

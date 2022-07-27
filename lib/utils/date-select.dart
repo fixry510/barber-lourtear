@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 
 Future<DateTime?> showDateSelect({lastDate, firstDate}) async {
   DateTime? dateSelect = await showRoundedDatePicker(
-    height: 260,
+    height: 300,
     context: Get.context!,
     fontFamily: 'Kanit',
     era: EraMode.BUDDHIST_YEAR,

@@ -5,7 +5,8 @@ import 'package:get/get.dart';
 class BackGroundMain extends StatelessWidget {
   final Widget child;
   final double? height;
-  BackGroundMain({required this.child, this.height});
+  final dynamic color;
+  BackGroundMain({required this.child, this.height, this.color});
 
   @override
   Widget build(BuildContext context) {

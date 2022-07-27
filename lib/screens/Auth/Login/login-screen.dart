@@ -1,5 +1,5 @@
 import 'package:barber/config/routes.dart';
-import 'package:barber/screens/Login/login-controller.dart';
+import 'package:barber/screens/Auth/Login/login-controller.dart';
 import 'package:barber/utils/background-curves.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
