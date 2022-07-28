@@ -4,9 +4,9 @@ import 'package:barber/network/request-exception.dart';
 import 'package:barber/network/request.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
 
 class HomeUserController extends GetxController {
+  GlobalKey<ScaffoldState> globalKey = GlobalKey();
   PageController pageController = PageController(viewportFraction: 0.9);
   List<HairData> hairs = [];
 

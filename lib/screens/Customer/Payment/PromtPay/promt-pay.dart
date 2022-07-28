@@ -1,9 +1,10 @@
-import 'package:barber/screens/Customer/Payment/CreditCard/credit-card-controller.dart';
+import 'package:barber/screens/Customer/Payment/PromtPay/promt-pay-controller.dart';
 import 'package:barber/utils/backround-main.dart';
+import 'package:barber/utils/load-widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_fade/image_fade.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class PromtPay extends StatelessWidget {
   @override
@@ -24,8 +25,8 @@ class PromtPay extends StatelessWidget {
         child: BackGroundMain(
           height: Get.height * .35,
           child: SafeArea(
-            child: GetBuilder<CreditCardController>(
-              init: CreditCardController(),
+            child: GetBuilder<PromtPayController>(
+              init: PromtPayController(),
               builder: (controller) => SingleChildScrollView(
                 child: Container(
                   height: Get.height - Get.statusBarHeight,
@@ -38,29 +39,36 @@ class PromtPay extends StatelessWidget {
                         color: Colors.white,
                       ),
                       // SizedBox(height: 15),
-                      Container(
-                        width: Get.width * 0.9,
-                        padding: EdgeInsets.all(30),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Text(
-                              "Promt Pay",
-                              style: TextStyle(
-                                fontSize: 20,
-                                color: Colors.black,
+                      Obx(
+                        () => controller.isLoad.value
+                            ? Container(
+                                height: 370,
+                                child: LoadWidget(),
+                              )
+                            : Container(
+                                width: Get.width * 0.9,
+                                padding: EdgeInsets.all(30),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Text(
+                                      "Promt Pay",
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                    SizedBox(height: 15),
+                                    Container(
+                                      height: 370,
+                                      child: ImageFade(
+                                        image: NetworkImage(
+                                            controller.prompayData!.qrcode),
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ),
-                            SizedBox(height: 15),
-                            Container(
-                              width: 300,
-                              height: 350,
-                              child: Image.network(
-                                "http://localhost:9999/new-file.png",
-                              ),
-                            ),
-                          ],
-                        ),
                       ),
                       Expanded(
                         child: Container(

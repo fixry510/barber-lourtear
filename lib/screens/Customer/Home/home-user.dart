@@ -1,4 +1,5 @@
 import 'package:barber/models/user-data.dart';
+import 'package:barber/screens/Customer/Home/Drawer/drawer-lourtea.dart';
 import 'package:barber/screens/Customer/Home/hair-items.dart';
 import 'package:barber/screens/Customer/Home/home-user-controller.dart';
 import 'package:barber/screens/auth-controller.dart';
@@ -11,41 +12,48 @@ class HomeUser extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final userData = Get.find<UserData>();
-    return Scaffold(
-      extendBodyBehindAppBar: true,
-      backgroundColor: Colors.orange[50],
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-        leading: Icon(Icons.menu),
-        title: Text(
-          "Loar Tear Barber",
-          style: TextStyle(
-            fontFamily: 'Roboot',
-            // fontSize: 20,
-          ),
-        ),
-        centerTitle: true,
-        actions: [
-          GestureDetector(
+    return GetBuilder<HomeUserController>(
+      init: HomeUserController(),
+      builder: (controller) => Scaffold(
+        key: controller.globalKey,
+        extendBodyBehindAppBar: true,
+        backgroundColor: Colors.orange[50],
+        drawer: DrawerLourTea(),
+        appBar: AppBar(
+          elevation: 0,
+          backgroundColor: Colors.transparent,
+          leading: GestureDetector(
             onTap: () {
-              Get.find<AuthController>().logout();
+              controller.globalKey.currentState!.openDrawer();
             },
-            child: Container(
-              margin: EdgeInsets.only(right: 10),
-              child: Icon(
-                Icons.search,
-                size: 30,
-              ),
+            child: Icon(Icons.menu),
+          ),
+          title: Text(
+            "Loar Tear Barber",
+            style: TextStyle(
+              fontFamily: 'Roboot',
+              // fontSize: 20,
             ),
           ),
-        ],
-      ),
-      body: BackGroundMain(
-        child: SafeArea(
-          child: GetBuilder<HomeUserController>(
-            init: HomeUserController(),
-            builder: (controller) => Container(
+          centerTitle: true,
+          actions: [
+            GestureDetector(
+              onTap: () {
+                Get.find<AuthController>().logout();
+              },
+              child: Container(
+                margin: EdgeInsets.only(right: 10),
+                child: Icon(
+                  Icons.search,
+                  size: 30,
+                ),
+              ),
+            ),
+          ],
+        ),
+        body: BackGroundMain(
+          child: SafeArea(
+            child: Container(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

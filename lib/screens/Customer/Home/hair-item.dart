@@ -1,8 +1,6 @@
 import 'package:barber/config/routes.dart';
 import 'package:barber/models/hair-data.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:image_fade/image_fade.dart';
 
