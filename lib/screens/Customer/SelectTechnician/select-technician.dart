@@ -50,6 +50,7 @@ class SelectTechnician extends StatelessWidget {
                             children: [
                               ...controller.technicians.map((techic) {
                                 return GestureDetector(
+                                  behavior: HitTestBehavior.translucent,
                                   onTap: () async {
                                     Get.toNamed(
                                       Routes.selectTechnicianQueue,

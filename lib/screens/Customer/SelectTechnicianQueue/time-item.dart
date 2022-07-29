@@ -11,6 +11,7 @@ class TimeItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      behavior: HitTestBehavior.translucent,
       onTap: () {
         if (technicTimeData.isAvalible == 1) {
           Get.back(result: {

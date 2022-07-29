@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'dart:io' show Platform;
 
 import 'package:google_fonts/google_fonts.dart';
 
@@ -43,14 +41,4 @@ class AuthLoadScreen extends StatelessWidget {
       ),
     );
   }
-  // @override
-  // Widget build(BuildContext context) {
-  //   return Scaffold(
-  //     body: Center(
-  //       child: Platform.isIOS
-  //           ? CupertinoActivityIndicator()
-  //           : CircularProgressIndicator(),
-  //     ),
-  //   );
-  // }
 }

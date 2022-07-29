@@ -39,36 +39,42 @@ class PromtPay extends StatelessWidget {
                         color: Colors.white,
                       ),
                       // SizedBox(height: 15),
-                      Obx(
-                        () => controller.isLoad.value
-                            ? Container(
-                                height: 370,
-                                child: LoadWidget(),
-                              )
-                            : Container(
-                                width: Get.width * 0.9,
-                                padding: EdgeInsets.all(30),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Text(
-                                      "Promt Pay",
-                                      style: TextStyle(
-                                        fontSize: 20,
-                                        color: Colors.black,
-                                      ),
-                                    ),
-                                    SizedBox(height: 15),
-                                    Container(
+                      Container(
+                        width: Get.width * 0.9,
+                        padding: EdgeInsets.all(30),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                controller.test();
+                              },
+                              child: Text(
+                                "Promt Pay",
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: 15),
+                            Obx(
+                              () => controller.isLoad.value
+                                  ? Container(
+                                      height: 370,
+                                      child: LoadWidget(),
+                                    )
+                                  : Container(
                                       height: 370,
                                       child: ImageFade(
                                         image: NetworkImage(
-                                            controller.prompayData!.qrcode),
+                                          controller.prompayData!.qrcode,
+                                        ),
                                       ),
                                     ),
-                                  ],
-                                ),
-                              ),
+                            )
+                          ],
+                        ),
                       ),
                       Expanded(
                         child: Container(

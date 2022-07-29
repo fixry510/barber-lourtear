@@ -17,8 +17,6 @@ class PromtPayController extends GetxController {
   StreamSubscription? subscription;
   var isLoad = true.obs;
 
-  var paymentStatus = "pending";
-
   PromtPayData? prompayData;
   final userController = Get.find<UserData>();
   final hairDetail = Get.find<HairDetailController>();
@@ -38,9 +36,19 @@ class PromtPayController extends GetxController {
           Get.offNamedUntil(
             Routes.paymentSummary,
             ModalRoute.withName(Routes.homeUser),
+            arguments: Get.find<HairDetailController>().getSelectTecnic,
           );
         });
       }
+    });
+  }
+
+  Future<void> test() async {
+    postRequest(path: "${APIEndpoint.hostName}/hook", data: {
+      "data": {
+        "id": prompayData!.doc,
+        "status": "successful",
+      },
     });
   }
 
@@ -53,7 +61,13 @@ class PromtPayController extends GetxController {
         "technicId": hairDetail.selectTechnicData['technic'].userId,
         "scheduleId": (hairDetail.selectTechnicData['time'] as TechnicTimeData)
             .scheduleId,
-        "date": hairDetail.selectTechnicData['date']
+        "hairId": hairDetail.hairData.hairId,
+        "dateReserve":
+            hairDetail.selectTechnicData['date'].split("/").reversed.join("-"),
+        "reserveData": {
+          "email": hairDetail.emailController.text,
+          "phone": hairDetail.phoneController.text,
+        },
       });
       prompayData = PromtPayData.fromJson(data);
     } on RequestException catch (e) {

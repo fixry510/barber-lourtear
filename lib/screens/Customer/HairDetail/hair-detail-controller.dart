@@ -25,4 +25,20 @@ class HairDetailController extends GetxController {
   void onChangeSelectImage(index) {
     currentSelectImage.value = index;
   }
+
+  // Get.find<HairDetailController>()
+  //                                             .selectTechnicData['technic'] =
+  //                                         techic;
+  //                                     Get.find<HairDetailController>()
+  //                                             .selectTechnicData['time'] =
+  //                                         value['time'];
+  //                                     Get.find<HairDetailController>()
+  //                                             .selectTechnicData['date'] =
+  //                                         value['date'];
+  get getSelectTecnic => {
+        "time": selectTechnicData['time'],
+        "technic": selectTechnicData['technic'],
+        "date": selectTechnicData['date'],
+        "hairData": hairData,
+      };
 }
