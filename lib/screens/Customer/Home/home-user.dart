@@ -1,4 +1,5 @@
 import 'package:barber/models/user-data.dart';
+import 'package:barber/screens/Customer/HistoryUser/history-user.dart';
 import 'package:barber/screens/Customer/Home/Drawer/drawer-lourtea.dart';
 import 'package:barber/screens/Customer/Home/hair-items.dart';
 import 'package:barber/screens/Customer/Home/home-user-controller.dart';
@@ -37,16 +38,11 @@ class HomeUser extends StatelessWidget {
           ),
           centerTitle: true,
           actions: [
-            GestureDetector(
-              onTap: () {
-                Get.find<AuthController>().logout();
-              },
-              child: Container(
-                margin: EdgeInsets.only(right: 10),
-                child: Icon(
-                  Icons.search,
-                  size: 30,
-                ),
+            Container(
+              margin: EdgeInsets.only(right: 10),
+              child: Icon(
+                Icons.search,
+                size: 30,
               ),
             ),
           ],
@@ -93,7 +89,14 @@ class HomeUser extends StatelessWidget {
                     () => controller.isLoad.value
                         ? LoadWidget()
                         : Expanded(
-                            child: HairItems(),
+                            child: PageView(
+                              controller: controller.pageSwapHistory,
+                              physics: NeverScrollableScrollPhysics(),
+                              children: [
+                                HairItems(),
+                                HistoryUser(),
+                              ],
+                            ),
                           ),
                   ),
                 ],

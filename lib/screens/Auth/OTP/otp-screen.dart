@@ -26,6 +26,7 @@ class OTPScreen extends StatelessWidget {
         ),
       ),
       body: GestureDetector(
+        behavior: HitTestBehavior.translucent,
         onTap: () {
           FocusManager.instance.primaryFocus?.unfocus();
         },

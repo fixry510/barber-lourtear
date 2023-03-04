@@ -17,6 +17,7 @@ class TimeItems extends StatelessWidget {
                 padding: EdgeInsets.zero,
                 children: [
                   ...controller.technicTimeData.map((technicTimeData) {
+
                     return TimeItem(technicTimeData: technicTimeData);
                   }).toList()
                 ],

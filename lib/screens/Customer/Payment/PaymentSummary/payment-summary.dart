@@ -6,12 +6,6 @@ import 'package:lottie/lottie.dart';
 
 class PaymentSummary extends StatelessWidget {
   const PaymentSummary({Key? key}) : super(key: key);
-  // {
-  //       "time": selectTechnicData['time'],
-  //       "technic": selectTechnicData['technic'],
-  //       "date": selectTechnicData['date'],
-  //       "hairData": hairData,
-  //     };
 
   @override
   Widget build(BuildContext context) {
@@ -54,12 +48,6 @@ class PaymentSummary extends StatelessWidget {
                             repeat: false,
                           ),
                         ),
-                        //                     {
-                        //   "time": selectTechnicData['time'],
-                        //   "technic": selectTechnicData['technic'],
-                        //   "date": selectTechnicData['date'],
-                        //   "hairData": hairData,
-                        // };
                         ReserveData(
                           date: Get.arguments['date'],
                           hairCut: Get.arguments['hairData'],

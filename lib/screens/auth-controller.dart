@@ -18,7 +18,6 @@ class AuthController extends GetxController {
     ever(isLogin, (bool val) async {
       if (val) {
         final userMap = await fetchUser();
-        print(userMap);
         if (userMap != null) {
           final userData = Get.put(UserData.fromJson(userMap), permanent: true);
           if (userData.position == "1") {
@@ -40,10 +39,10 @@ class AuthController extends GetxController {
   Future<Map<String, dynamic>?> fetchUser() async {
     try {
       final userFirebase = FirebaseAuth.instance.currentUser!;
-      final res = await getRequest(
-          path: "${APIEndpoint.hostName}/user/${userFirebase.uid}");
+      final res = await getRequest(path: "${APIEndpoint.hostName}/user/${userFirebase.uid}");
       return res;
     } on RequestException catch (_) {
+      logout();
       return null;
     }
   }

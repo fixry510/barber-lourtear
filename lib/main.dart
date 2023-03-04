@@ -13,8 +13,10 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
-  @override
+  @override 
   Widget build(BuildContext context) {
+    // var s = DateTime.now().compareTo(DateTime(2022,08,02,21,20));
+    // print(DateTime.now().isBefore(DateTime(2022,08,02,22)));
     return GetMaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,

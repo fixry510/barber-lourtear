@@ -57,15 +57,9 @@ class SelectTechnician extends StatelessWidget {
                                       arguments: techic,
                                     )?.then((value) {
                                       if (value != null) {
-                                        Get.find<HairDetailController>()
-                                                .selectTechnicData['technic'] =
-                                            techic;
-                                        Get.find<HairDetailController>()
-                                                .selectTechnicData['time'] =
-                                            value['time'];
-                                        Get.find<HairDetailController>()
-                                                .selectTechnicData['date'] =
-                                            value['date'];
+                                        Get.find<HairDetailController>().selectTechnicData['technic'] = techic;
+                                        Get.find<HairDetailController>() .selectTechnicData['time'] = value['time'];
+                                        Get.find<HairDetailController>().selectTechnicData['date'] = value['date'];
                                       }
                                     });
                                   },

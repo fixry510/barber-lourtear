@@ -1,5 +1,6 @@
 import 'package:barber/config/api-endpoint.dart';
 import 'package:barber/models/hair-data.dart';
+import 'package:barber/models/user-data.dart';
 import 'package:barber/network/request-exception.dart';
 import 'package:barber/network/request.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,10 @@ class HomeUserController extends GetxController {
   PageController pageController = PageController(viewportFraction: 0.9);
   List<HairData> hairs = [];
 
+  List historyData = [];
+
+  PageController pageSwapHistory = PageController();
+
   final isLoad = true.obs;
 
   Future<void> fetchHairs() async {
@@ -18,6 +23,15 @@ class HomeUserController extends GetxController {
       data.forEach((hairItem) {
         hairs.add(HairData.fromJson(hairItem));
       });
+    } on RequestException catch (_) {}
+  }
+
+  Future<void> fetchHistory() async {
+    try {
+      final userData = Get.find<UserData>().userId;
+      final data = await getRequest(
+          path: "${APIEndpoint.hostName}/user/history/${userData}");
+      historyData = data;
     } on RequestException catch (_) {
     } finally {
       isLoad.value = false;
@@ -27,6 +41,8 @@ class HomeUserController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    fetchHairs();
+    fetchHairs().then((_) {
+      fetchHistory();
+    });
   }
 }

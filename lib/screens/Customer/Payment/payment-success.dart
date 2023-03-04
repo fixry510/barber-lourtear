@@ -26,8 +26,7 @@ class _PaymentSuccessState extends State<PaymentSuccess>
   Widget build(BuildContext context) {
     return Center(
       child: Material(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(20),
         child: Container(
           width: 320,
           height: 300,
@@ -41,16 +40,19 @@ class _PaymentSuccessState extends State<PaymentSuccess>
                   fontWeight: FontWeight.w500,
                 ),
               ),
-              Lottie.asset(
-                "assets/lottie/success.json",
-                width: 230,
-                height: 230,
-                repeat: false,
-                onLoaded: (composition) {
-                  _controller
-                    ..duration = composition.duration
-                    ..forward();
-                },
+              Transform.scale(
+                scale: 1.5,
+                child: Lottie.asset(
+                  "assets/lottie/success.json",
+                  width: 250,
+                  height: 250,
+                  repeat: false,
+                  onLoaded: (composition) {
+                    _controller
+                      ..duration = composition.duration
+                      ..forward();
+                  },
+                ),
               ),
             ],
           ),

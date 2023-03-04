@@ -28,7 +28,7 @@ class PromtPayController extends GetxController {
         .snapshots()
         .listen((doc) async {
       if (doc.data()?['status'] == "successful") {
-        await Get.bottomSheet(
+        await Get.dialog(
           PaymentSuccess(),
           barrierColor: Colors.black45,
         );
